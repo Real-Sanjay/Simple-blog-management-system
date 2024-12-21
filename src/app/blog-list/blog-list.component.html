@@ -1,0 +1,18 @@
+<div class="blogs-container">
+  <h1 class="heading">Blogs List</h1>
+  <div *ngIf="blogs.length; else noPosts" class="blog-list">
+    <div
+      *ngFor="let blog of blogs"
+      [ngClass]="{ 'highlight': blog.status === 'Published' }"
+      class="blog-item"
+    >
+      <h3 class="blog-title">{{ blog.title }}</h3>
+      <p class="blog-content">{{ blog.content }}</p>
+      <button class="delbtn" (click)="deleteDrafts(blog._id)">Delete</button>
+    </div>
+  </div>
+  <ng-template #noPosts>
+    <p class="no-posts">No posts available</p>
+  </ng-template>
+</div>
+<app-footer></app-footer>

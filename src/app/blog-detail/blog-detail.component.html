@@ -1,0 +1,36 @@
+<div class="blogs-container">
+  <h1 class="heading">Click on a blog to see full details</h1>
+
+ 
+  <div *ngIf="!selectedBlog && blogs.length;" class="blog-list">
+    <div
+      *ngFor="let blog of blogs"
+      (click)="selectBlog(blog)"
+      [ngClass]="{ 'highlight': blog.status === 'Published' }"
+      class="blog-item"
+    >
+      <h3 class="blog-title">{{ blog.title }}</h3>
+    </div>
+  </div>
+
+
+  <div *ngIf="selectedBlog" class="blog-detail">
+    <button (click)="clearSelection()" class="back-button">Back to List</button>
+    <h2 class="blog-title">{{ selectedBlog.title }}</h2>
+    <p class="blog-content">{{ selectedBlog.content }}</p>
+    <p>
+      Status: 
+      <span 
+        [ngClass]="{ 'published': selectedBlog.status === 'Published', 'draft': selectedBlog.status === 'Draft' }">
+        {{ selectedBlog.status }}
+      </span>
+    </p>
+  </div>
+
+ 
+  <!-- <ng-template #noPosts>
+    <p class="no-posts">No posts available</p>
+  </ng-template>
+</div> -->
+
+<app-footer></app-footer>
